@@ -16,4 +16,19 @@ class AgentController extends Controller
 
         return response()->json($response);
     }
+
+    public function createAgent() {
+        $agent = new Agent;
+        $agent->status = "active";
+        $agent->role = "operator";
+        $agent->type = "B456";
+        $agent->color= "Platinum";
+        $agent->save();
+
+        $response = [];
+        $response['status'] = "success";
+        $response["payload"] = $agent;
+
+        return response()->json($response);
+    }
 }
