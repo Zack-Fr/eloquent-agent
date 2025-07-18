@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->integer('task_id');
+            $table->integer('agent_id');
             $table->string('name');
             $table->timestamps();
         });

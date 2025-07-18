@@ -9,7 +9,7 @@ use App\Models\Agent;
 class TaskController extends Controller
 {
     public function getAllTasks()
-    {   
+    {
         $tasks = Task::all();
         $response = [];
         $response['status'] = "success";
@@ -17,26 +17,29 @@ class TaskController extends Controller
 
         return response()->json($response);
     }
-    public function createOrUpdateTask(Request $request, $id = null) {
-        if ($id){
-            $task = Task::find ($id);
+    public function createOrUpdateTask(Request $request, $id = null)
+    {
+        if ($id) {
+            $task = Task::find($id);
         } else {
             $task = new Task;
         }
-        
-        $task->task_id = 0;
-        $task->name = $request ["name"];
+
+        $task->agent_id = 0;
+        $task->name = $request["name"];
         $task->save();
-        
+
         $response = [];
         $response['status'] = "success";
         $response["payload"] = $task;
-        
+
         return json_encode($response, 200);
     }
-    public function getAllTaskByAgent ($id) {
+    public function getAllTaskByAgent($id)
+    {
         $agent = Agent::find($id);
-        $allTasksByAgent = $agent->tasks;
-        return json_encode($allTasksByAgent);
+        // Agent::with('tasks')->findOrFail($id);//eager method
+        $tasks = $agent->tasks;
+        return json_encode($tasks);
     }
 }
