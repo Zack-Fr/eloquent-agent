@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class agent extends Model
+class Agent extends Model
 {
+    public function tasks (){
+        return $this->hasMany(Task::class);
+    }
     //
 }
