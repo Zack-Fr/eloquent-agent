@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Agent;
 
 class TaskController extends Controller
 {
@@ -32,5 +33,10 @@ class TaskController extends Controller
         $response["payload"] = $task;
         
         return json_encode($response, 200);
+    }
+    public function getAllTaskByAgent ($id) {
+        $agent = Agent::find($id);
+        $allTasksByAgent = $agent->tasks;
+        return json_encode($allTasksByAgent);
     }
 }

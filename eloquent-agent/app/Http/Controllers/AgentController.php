@@ -56,4 +56,12 @@ class AgentController extends Controller
         }
 
     }
+
+    public function getAgentByType() {
+        $agents = Agent::where('type', 'B456')
+        ->orderBy('type')
+        ->limit(2)
+        ->get();
+        return json_encode($agents);
+    }
 }
