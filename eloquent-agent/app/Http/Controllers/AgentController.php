@@ -67,4 +67,12 @@ class AgentController extends Controller
             ->get();
         return json_encode($agents);
     }
+
+        public function getAllTaskByAgent($id)
+    {
+        $agent = Agent::find($id);
+        // Agent::with('tasks')->findOrFail($id);//eager method
+        $tasks = $agent->tasks;
+        return json_encode($tasks);
+    }
 }
