@@ -37,9 +37,23 @@ class AgentController extends Controller
         return json_encode($response, 200);
     }
 
-    public function deleteAgent(Request $request, $id = null){
+    public function deleteAgent(Request $request, $id){
+
+        $agent = Agent::find($id);
+
+        if($agent) {
+            $agent->delete();
+
+        return response()->json([
+            'status' => 'Successfully deleted',
+            'payload' => $agent
+        ], 200);
+
+        } else {
+            return response()->json ([
+                'status' => "Failed, agent with ID {$id} doesn't exist"
+            ], 404);
+        }
 
     }
-
-    
 }
