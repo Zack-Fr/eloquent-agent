@@ -17,13 +17,13 @@ class AgentController extends Controller
         return response()->json($response);
     }
 
-    public function createAgent(Request $request, $id = null) {
+    public function createOrUpdateAgent(Request $request, $id = null) {
         if ($id){
             $agent = Agent::find ($id);
         } else {
             $agent = new Agent;
         }
-        $agent = new Agent;
+        
         $agent->status = $request ["status"];
         $agent->role = $request ["role"];
         $agent->type = $request ["type"];
@@ -36,5 +36,10 @@ class AgentController extends Controller
         
         return json_encode($response, 200);
     }
+
+    public function deleteAgent(Request $request, $id = null){
+
+    }
+
     
 }

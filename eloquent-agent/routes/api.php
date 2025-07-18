@@ -9,7 +9,7 @@ use App\Http\Controllers\admin\AgentController as AgentAdminController;
 
 route::group(["prefix"=>"v0.1"], function(){
     Route::get('/agent', [AgentController::class, 'getAllAgents']);
-    Route::post('/create_agent/{id?}', [AgentController::class, 'createAgent']);
+    Route::post('/create_update_agent/{id?}', [AgentController::class, 'createOrUpdateAgent']);
 });
 
     route::group(["prefix"=>"admin"], function(){
