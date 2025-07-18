@@ -17,7 +17,10 @@ class AgentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "id" => 0,
+            'status'=> $this->faker->unique()->word,
+            'role'=> $this->faker->unique()->word,
+            'type'=>$this->faker->unique()->word, 
         ];
     }
 }

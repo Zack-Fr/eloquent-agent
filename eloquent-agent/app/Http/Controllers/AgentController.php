@@ -17,18 +17,24 @@ class AgentController extends Controller
         return response()->json($response);
     }
 
-    public function createAgent() {
+    public function createAgent(Request $request, $id = null) {
+        if ($id){
+            $agent = Agent::find ($id);
+        } else {
+            $agent = new Agent;
+        }
         $agent = new Agent;
-        $agent->status = "active";
-        $agent->role = "operator";
-        $agent->type = "B456";
-        $agent->color= "Platinum";
+        $agent->status = $request ["status"];
+        $agent->role = $request ["role"];
+        $agent->type = $request ["type"];
+        $agent->color= $request ["color"];
         $agent->save();
 
         $response = [];
         $response['status'] = "success";
         $response["payload"] = $agent;
-
-        return response()->json($response);
+        
+        return json_encode($response, 200);
     }
+    
 }
